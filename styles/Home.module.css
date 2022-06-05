@@ -5,6 +5,7 @@
   grid-template-rows: 1fr;
   background-color: #f2e2fa;
   box-shadow: 0px 0px 5px #00000029;
+  width: 100%;
 }
 
 .image {
@@ -43,6 +44,15 @@
 }
 
 .box {
+  width: 20rem;
+  margin: 2rem;
+  box-shadow: #f2e2fa 0px 0px 5px;
+  border-radius: 0.5rem;
+  font-size: large;
+  background-color: #f2e2fa;
+}
+
+.boxT {
   width: 20rem;
   margin: 2rem;
   box-shadow: #f2e2fa 0px 0px 5px;
@@ -107,6 +117,9 @@
   bottom: 0;
   width: 100%;
 }
+.info {
+  grid-column-start: 2;
+}
 
 .parainfo {
   font-size: 1.25rem;
@@ -168,6 +181,11 @@
   font-size: large;
 }
 
+.porClases2 {
+  width: 40%;
+  font-size: large;
+}
+
 .login {
   display: flex;
   justify-content: right;
@@ -190,7 +208,7 @@
 }
 
 .inicio {
-  width: 30%;
+  width: 60%;
   margin-top: 2rem;
   margin-inline: auto;
   box-shadow: rgb(212, 0, 255) -5px 5px 10px;
@@ -210,7 +228,7 @@
   justify-content: space-around;
   margin-left: 20rem;
   margin-right: 10rem;
-  margin-top : 2rem;
+  margin-top: 2rem;
 }
 
 .containerForm {
@@ -230,6 +248,11 @@
   font-size: medium;
   width: 10rem;
   padding: 0.25rem;
+}
+
+.selectF {
+  width: 10rem;
+  margin: auto;
 }
 
 .select:hover {
@@ -255,38 +278,135 @@
   color: rgb(212, 0, 255);
 }
 
-.marginn{
+.marginn {
   margin-left: 2rem;
   margin-bottom: 10rem;
 }
 
-.colorR{
+.colorR {
   background-color: rgba(255, 0, 0, 0.422);
   border-radius: 8px;
 }
 
-.colorV{
+.colorV {
   background-color: rgba(0, 255, 0, 0.422);
   border-radius: 8px;
 }
 
-.colorA{
-  background-color: rgba(255, 255, 0, 0.422);  
+.colorA {
+  background-color: rgba(255, 255, 0, 0.422);
   border-radius: 8px;
 }
 
-.colorO{
+.colorO {
   background-color: rgba(255, 166, 0, 0.422);
   border-radius: 8px;
 }
 
-.pruebame{
-  background-image:url("https://www.purefitness.es/profesional/wp-content/uploads/maquinas-para-gimnasios.jpg");
+.pruebame {
+  background-image: url("https://www.purefitness.es/profesional/wp-content/uploads/maquinas-para-gimnasios.jpg");
   padding: 1rem;
   background-size: cover;
   background-position: 50%;
 }
 
-.borrar{
+.borrar {
   cursor: pointer;
+}
+
+.botonera {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.margen {
+  margin-left: 2rem;
+  margin-bottom: 10rem;
+}
+
+.margen2 {
+  margin-left: 2rem;
+}
+
+.dni{
+  -moz-appearance:textfield;
+}
+
+@media screen and (max-width: 600px) {
+  .containerHeader {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .nav {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .pepe {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .prices {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    margin: 1rem;
+    justify-items: center;
+    margin: auto;
+  }
+
+  .containerFooter {
+    height: 8rem;
+    background-color: #f2e2fa;
+    box-shadow: 0px 0px 5px #00000029;
+    font-size: 1rem;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .interes {
+    display: none;
+  }
+
+  .prices {
+    margin-bottom: 10rem;
+  }
+
+  .porClases {
+    display: grid;
+    margin-left: 1rem;
+    margin-right: 1rem; 
+  }
+
+  .porClases1 {
+    width: auto;
+  }
+
+  .porClases2 {
+    width: auto;
+    margin-bottom: 8rem;
+  }
+
+  .table{
+    display: none;
+  }
+  .containerForm{
+    margin-left:1rem ;
+    margin-right: 1rem;
+  }
+
+  .perfil {
+    display: flex;
+    justify-content: right;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 8rem;
+  }
 }

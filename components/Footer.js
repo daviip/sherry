@@ -6,15 +6,15 @@ import styles from "../styles/Home.module.css";
 export const Footer = () => {
   return (
     <div className={styles.containerFooter}>
-      <div className={styles.image}>
+      {/* <div className={styles.image}>
         <Image src={Logo} width={130} height={120} alt="img" />
-      </div>
+      </div> */}
       <div className={styles.info}>
         <span className={styles.parainfo}>Para mas info</span>
         <br />
         <span>informatica@iesromerovargas.com</span>
         <br />
-        <span>C. Moreno Mendoza, 4, 11408 Jerez de la Frontera, Cádiz</span>
+        <span>C. Moreno Mendoza, 4, 11408 Jerez de la Frontera</span>
         <br />
         <span>654123987</span>
       </div>

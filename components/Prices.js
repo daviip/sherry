@@ -16,7 +16,7 @@ export const Prices = ({ data, all }) => {
       <hr className={styles.separador} />
       <div className={styles.prices}>
         {tarifa3.map((item) => (
-          <div className={styles.box} key={item._id}>
+          <div className={styles.boxT} key={item._id}>
             <Image src={Logo} width={100} height={90} alt="img"/>
             <p>
               <strong>{item.nombre}</strong>

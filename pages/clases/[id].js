@@ -45,7 +45,7 @@ export default function Class({ data }) {
       <div>
         <Header />
         <div>
-          <h1 className={styles.title}>Clases</h1>
+          <h1 className={styles.title}>{data.nombre}</h1>
           <hr className={styles.separador} />
           <div className={styles.porClases}>
             <Image
@@ -55,8 +55,7 @@ export default function Class({ data }) {
               alt="img"
               className={styles.porClases1}
             />
-            <div className={styles.porClases1}>
-              <h2>{data.nombre}</h2>
+            <div className={styles.porClases2}>
               <p>Intensidad: {data.intensidad}</p>
               <p>{data.descripcion}</p>
             </div>

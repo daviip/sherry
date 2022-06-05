@@ -43,6 +43,7 @@ export default function Inicio() {
             placeholder="dni sin letra"
             onChange={(e) => setDni(e.target.value)}
             required
+            className={styles.dni}
           />
           <br></br>
           <br></br>

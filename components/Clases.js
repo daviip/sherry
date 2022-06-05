@@ -8,7 +8,6 @@ import BodyCombat from "../public/imagesC/4.jpg";
 import Pilates from "../public/imagesC/5.jpg";
 import Yoga from "../public/imagesC/6.jpg";
 import CrossTraining from "../public/imagesC/7.jpg";
-import BodyPump from "../public/imagesC/8.jpg";
 import Zumba from "../public/imagesC/9.jpg";
 
 let img = [
@@ -18,7 +17,6 @@ let img = [
   Pilates,
   Yoga,
   CrossTraining,
-  BodyPump,
   Zumba,
   Walking,
 ];

@@ -3,13 +3,15 @@ import Image from "next/image";
 import borrarF from "../public/borrar.png";
 import { backend } from "../public/backend";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export const PerfilUser = ({ user, data }) => {
+export const PerfilUser = ({ user, data, dataTarifas, dataUsers }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isEditando, setEditando] = useState(false);
   const [isCorreo, setCorreo] = useState(user.email);
   const [isTelefono, setTelefono] = useState(user.telefono);
   const [isTarifa, setTarifa] = useState(user.tarifa);
+  const [isUserB, setUserB] = useState("");
 
   let texto = [];
   let nd = [];
@@ -33,7 +35,7 @@ export const PerfilUser = ({ user, data }) => {
   });
 
   useEffect(() => {
-    setIsAdmin(localStorage.getItem("token") === "62875f3d4e30a4304908346d");
+    setIsAdmin(localStorage.getItem("token") === "628f283275c3530f7cd3a8f7");
   }, [isAdmin]);
 
   const borrar = (nombre, dia) => {
@@ -77,6 +79,24 @@ export const PerfilUser = ({ user, data }) => {
   };
 
   const borrarReservas = () => {
+    fetch(backend + "/historial/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        historial: data,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          console.log("Historial guardado");
+        }
+      });
+
     data.map((c) => {
       fetch(backend + "/clases/reservaB/" + c.nombre, {
         method: "DELETE",
@@ -113,7 +133,7 @@ export const PerfilUser = ({ user, data }) => {
     fetch(backend + "/users/edit/" + user._id, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         nombre: user.nombre,
@@ -121,9 +141,22 @@ export const PerfilUser = ({ user, data }) => {
         email: isCorreo,
         telefono: isTelefono,
         tarifa: isTarifa,
-      })
-    })
+      }),
+    });
     setEditando(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
+
+  const borrarUser = () => {
+    fetch(backend + "/users/delete/" + isUserB, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setUserB("");
     setTimeout(() => {
       window.location.reload();
     }, 100);
@@ -141,13 +174,39 @@ export const PerfilUser = ({ user, data }) => {
             <form>
               <strong>
                 <p>
-                  Correo<input value={isCorreo} placeholder={user.email} name="correo" onChange={handleChange}></input>
+                  Correo
+                  <input
+                    value={isCorreo}
+                    placeholder={user.email}
+                    name="correo"
+                    onChange={handleChange}
+                  ></input>
                 </p>
                 <p>
-                  Telefono<input value={isTelefono} placeholder={user.telefono} name="telefono" onChange={handleChange}></input>
+                  Telefono
+                  <input
+                    value={isTelefono}
+                    placeholder={user.telefono}
+                    name="telefono"
+                    onChange={handleChange}
+                  ></input>
                 </p>
                 <p>
-                  Tarifa<input value={isTarifa} placeholder={user.tarifa} name="tarifa" onChange={handleChange}></input>
+                  Tarifa
+                  <select
+                    name="tarifa"
+                    defaultValue={isTarifa}
+                    onChange={handleChange}
+                  >
+                    <option value="">Seleccione una tarifa</option>
+                    {dataTarifas.map((tarifa, i) => {
+                      return (
+                        <option value={tarifa.nombre} key={i}>
+                          {tarifa.nombre} -- {tarifa.precio}€
+                        </option>
+                      );
+                    })}
+                  </select>
                 </p>
               </strong>
             </form>
@@ -182,9 +241,48 @@ export const PerfilUser = ({ user, data }) => {
         </div>
         <div>
           {isAdmin ? (
-            <button className={styles.button} onClick={() => borrarReservas()}>
-              <a>Borrar Reservas</a>
-            </button>
+            <div>
+              <div>
+                <button
+                  className={styles.loginB}
+                  onClick={() => borrarReservas()}
+                >
+                  <a>Borrar Reservas</a>
+                </button>
+                <button className={styles.loginB}>
+                  <Link href="/registro">
+                    <a>Crear Usuario</a>
+                  </Link>
+                </button>
+              </div>
+              <div className={styles.botonera}>
+                <select onChange={(e) => setUserB(e.target.value)}>
+                  <option value="-">Borrado de usuario</option>
+                  {dataUsers.map((c, i) => {
+                    return (
+                      <option value={c._id} key={i}>
+                        {c.nombre} {c.apellido}
+                      </option>
+                    );
+                  })}
+                </select>
+                <button className={styles.loginB} onClick={() => borrarUser()}>
+                  <a>Borrar Usuario</a>
+                </button>
+              </div>
+              <div>
+                <button className={styles.loginB}>
+                  <Link href="/reservaactual">
+                    <a>Ver Reserva Semanal</a>
+                  </Link>
+                </button>
+                <button className={styles.loginB}>
+                  <Link href="/reservahistorial">
+                    <a>Ver Historial Reservas</a>
+                  </Link>
+                </button>
+              </div>
+            </div>
           ) : isEditando ? (
             <button className={styles.button} onClick={() => guardarP()}>
               <a>Guardar Perfil</a>
